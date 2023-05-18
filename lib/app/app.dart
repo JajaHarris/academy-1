@@ -9,6 +9,7 @@ import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:filledstacks_academy/ui/views/main_layout/main_layout_view.dart';
 import 'package:filledstacks_academy/services/layout_service.dart';
+import 'package:filledstacks_academy/ui/views/course_chapter/course_chapter_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -23,6 +24,7 @@ import 'package:filledstacks_academy/services/layout_service.dart';
         CustomRoute(page: CourseDetailsView, path: 'details/:courseId'),
       ],
     ),
+    CustomRoute(page: CourseChapterView),
 // @stacked-route
     CustomRoute(page: UnknownView, path: '/404'),
 

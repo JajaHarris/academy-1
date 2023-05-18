@@ -5,53 +5,62 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:flutter/material.dart' as _i8;
-import 'package:stacked/stacked.dart' as _i7;
-import 'package:stacked_services/stacked_services.dart' as _i6;
+import 'package:flutter/material.dart' as _i9;
+import 'package:stacked/stacked.dart' as _i8;
+import 'package:stacked_services/stacked_services.dart' as _i7;
 
-import '../ui/views/course_details/course_details_view.dart' as _i5;
-import '../ui/views/course_landing/course_landing_view.dart' as _i4;
-import '../ui/views/home/home_view.dart' as _i3;
+import '../ui/views/course_chapter/course_chapter_view.dart' as _i2;
+import '../ui/views/course_details/course_details_view.dart' as _i6;
+import '../ui/views/course_landing/course_landing_view.dart' as _i5;
+import '../ui/views/home/home_view.dart' as _i4;
 import '../ui/views/main_layout/main_layout_view.dart' as _i1;
-import '../ui/views/unknown/unknown_view.dart' as _i2;
+import '../ui/views/unknown/unknown_view.dart' as _i3;
 
 final stackedRouter =
-    StackedRouterWeb(navigatorKey: _i6.StackedService.navigatorKey);
+    StackedRouterWeb(navigatorKey: _i7.StackedService.navigatorKey);
 
-class StackedRouterWeb extends _i7.RootStackRouter {
-  StackedRouterWeb({_i8.GlobalKey<_i8.NavigatorState>? navigatorKey})
+class StackedRouterWeb extends _i8.RootStackRouter {
+  StackedRouterWeb({_i9.GlobalKey<_i9.NavigatorState>? navigatorKey})
       : super(navigatorKey);
 
   @override
-  final Map<String, _i7.PageFactory> pagesMap = {
+  final Map<String, _i8.PageFactory> pagesMap = {
     MainLayoutViewRoute.name: (routeData) {
-      return _i7.CustomPage<dynamic>(
+      return _i8.CustomPage<dynamic>(
         routeData: routeData,
         child: const _i1.MainLayoutView(),
         opaque: true,
         barrierDismissible: false,
       );
     },
-    UnknownViewRoute.name: (routeData) {
-      return _i7.CustomPage<dynamic>(
+    CourseChapterViewRoute.name: (routeData) {
+      return _i8.CustomPage<dynamic>(
         routeData: routeData,
-        child: const _i2.UnknownView(),
+        child: const _i2.CourseChapterView(),
+        opaque: true,
+        barrierDismissible: false,
+      );
+    },
+    UnknownViewRoute.name: (routeData) {
+      return _i8.CustomPage<dynamic>(
+        routeData: routeData,
+        child: const _i3.UnknownView(),
         opaque: true,
         barrierDismissible: false,
       );
     },
     HomeViewRoute.name: (routeData) {
-      return _i7.CustomPage<dynamic>(
+      return _i8.CustomPage<dynamic>(
         routeData: routeData,
-        child: const _i3.HomeView(),
+        child: const _i4.HomeView(),
         opaque: true,
         barrierDismissible: false,
       );
     },
     CourseLandingViewRoute.name: (routeData) {
-      return _i7.CustomPage<dynamic>(
+      return _i8.CustomPage<dynamic>(
         routeData: routeData,
-        child: const _i4.CourseLandingView(),
+        child: const _i5.CourseLandingView(),
         opaque: true,
         barrierDismissible: false,
       );
@@ -61,9 +70,9 @@ class StackedRouterWeb extends _i7.RootStackRouter {
       final args = routeData.argsAs<CourseDetailsViewArgs>(
           orElse: () => CourseDetailsViewArgs(
               courseId: pathParams.getString('courseId')));
-      return _i7.CustomPage<dynamic>(
+      return _i8.CustomPage<dynamic>(
         routeData: routeData,
-        child: _i5.CourseDetailsView(
+        child: _i6.CourseDetailsView(
           key: args.key,
           courseId: args.courseId,
         ),
@@ -74,33 +83,37 @@ class StackedRouterWeb extends _i7.RootStackRouter {
   };
 
   @override
-  List<_i7.RouteConfig> get routes => [
-        _i7.RouteConfig(
+  List<_i8.RouteConfig> get routes => [
+        _i8.RouteConfig(
           MainLayoutViewRoute.name,
           path: '/',
           children: [
-            _i7.RouteConfig(
+            _i8.RouteConfig(
               HomeViewRoute.name,
               path: '',
               parent: MainLayoutViewRoute.name,
             ),
-            _i7.RouteConfig(
+            _i8.RouteConfig(
               CourseLandingViewRoute.name,
               path: 'course-landing-view',
               parent: MainLayoutViewRoute.name,
             ),
-            _i7.RouteConfig(
+            _i8.RouteConfig(
               CourseDetailsViewRoute.name,
               path: 'details/:courseId',
               parent: MainLayoutViewRoute.name,
             ),
           ],
         ),
-        _i7.RouteConfig(
+        _i8.RouteConfig(
+          CourseChapterViewRoute.name,
+          path: '/course-chapter-view',
+        ),
+        _i8.RouteConfig(
           UnknownViewRoute.name,
           path: '/404',
         ),
-        _i7.RouteConfig(
+        _i8.RouteConfig(
           '*#redirect',
           path: '*',
           redirectTo: '/404',
@@ -111,8 +124,8 @@ class StackedRouterWeb extends _i7.RootStackRouter {
 
 /// generated route for
 /// [_i1.MainLayoutView]
-class MainLayoutViewRoute extends _i7.PageRouteInfo<void> {
-  const MainLayoutViewRoute({List<_i7.PageRouteInfo>? children})
+class MainLayoutViewRoute extends _i8.PageRouteInfo<void> {
+  const MainLayoutViewRoute({List<_i8.PageRouteInfo>? children})
       : super(
           MainLayoutViewRoute.name,
           path: '/',
@@ -123,8 +136,20 @@ class MainLayoutViewRoute extends _i7.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i2.UnknownView]
-class UnknownViewRoute extends _i7.PageRouteInfo<void> {
+/// [_i2.CourseChapterView]
+class CourseChapterViewRoute extends _i8.PageRouteInfo<void> {
+  const CourseChapterViewRoute()
+      : super(
+          CourseChapterViewRoute.name,
+          path: '/course-chapter-view',
+        );
+
+  static const String name = 'CourseChapterView';
+}
+
+/// generated route for
+/// [_i3.UnknownView]
+class UnknownViewRoute extends _i8.PageRouteInfo<void> {
   const UnknownViewRoute()
       : super(
           UnknownViewRoute.name,
@@ -135,8 +160,8 @@ class UnknownViewRoute extends _i7.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i3.HomeView]
-class HomeViewRoute extends _i7.PageRouteInfo<void> {
+/// [_i4.HomeView]
+class HomeViewRoute extends _i8.PageRouteInfo<void> {
   const HomeViewRoute()
       : super(
           HomeViewRoute.name,
@@ -147,8 +172,8 @@ class HomeViewRoute extends _i7.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i4.CourseLandingView]
-class CourseLandingViewRoute extends _i7.PageRouteInfo<void> {
+/// [_i5.CourseLandingView]
+class CourseLandingViewRoute extends _i8.PageRouteInfo<void> {
   const CourseLandingViewRoute()
       : super(
           CourseLandingViewRoute.name,
@@ -159,10 +184,10 @@ class CourseLandingViewRoute extends _i7.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i5.CourseDetailsView]
-class CourseDetailsViewRoute extends _i7.PageRouteInfo<CourseDetailsViewArgs> {
+/// [_i6.CourseDetailsView]
+class CourseDetailsViewRoute extends _i8.PageRouteInfo<CourseDetailsViewArgs> {
   CourseDetailsViewRoute({
-    _i8.Key? key,
+    _i9.Key? key,
     required String courseId,
   }) : super(
           CourseDetailsViewRoute.name,
@@ -183,7 +208,7 @@ class CourseDetailsViewArgs {
     required this.courseId,
   });
 
-  final _i8.Key? key;
+  final _i9.Key? key;
 
   final String courseId;
 
@@ -193,17 +218,25 @@ class CourseDetailsViewArgs {
   }
 }
 
-extension RouterStateExtension on _i6.RouterService {
+extension RouterStateExtension on _i7.RouterService {
   Future<dynamic> navigateToMainLayoutView(
-      {void Function(_i7.NavigationFailure)? onFailure}) async {
+      {void Function(_i8.NavigationFailure)? onFailure}) async {
     return navigateTo(
       const MainLayoutViewRoute(),
       onFailure: onFailure,
     );
   }
 
+  Future<dynamic> navigateToCourseChapterView(
+      {void Function(_i8.NavigationFailure)? onFailure}) async {
+    return navigateTo(
+      const CourseChapterViewRoute(),
+      onFailure: onFailure,
+    );
+  }
+
   Future<dynamic> navigateToUnknownView(
-      {void Function(_i7.NavigationFailure)? onFailure}) async {
+      {void Function(_i8.NavigationFailure)? onFailure}) async {
     return navigateTo(
       const UnknownViewRoute(),
       onFailure: onFailure,
@@ -211,7 +244,7 @@ extension RouterStateExtension on _i6.RouterService {
   }
 
   Future<dynamic> navigateToHomeView(
-      {void Function(_i7.NavigationFailure)? onFailure}) async {
+      {void Function(_i8.NavigationFailure)? onFailure}) async {
     return navigateTo(
       const HomeViewRoute(),
       onFailure: onFailure,
@@ -219,7 +252,7 @@ extension RouterStateExtension on _i6.RouterService {
   }
 
   Future<dynamic> navigateToCourseLandingView(
-      {void Function(_i7.NavigationFailure)? onFailure}) async {
+      {void Function(_i8.NavigationFailure)? onFailure}) async {
     return navigateTo(
       const CourseLandingViewRoute(),
       onFailure: onFailure,
@@ -227,9 +260,9 @@ extension RouterStateExtension on _i6.RouterService {
   }
 
   Future<dynamic> navigateToCourseDetailsView({
-    _i8.Key? key,
+    _i9.Key? key,
     required String courseId,
-    void Function(_i7.NavigationFailure)? onFailure,
+    void Function(_i8.NavigationFailure)? onFailure,
   }) async {
     return navigateTo(
       CourseDetailsViewRoute(
@@ -241,15 +274,23 @@ extension RouterStateExtension on _i6.RouterService {
   }
 
   Future<dynamic> replaceWithMainLayoutView(
-      {void Function(_i7.NavigationFailure)? onFailure}) async {
+      {void Function(_i8.NavigationFailure)? onFailure}) async {
     return replaceWith(
       const MainLayoutViewRoute(),
       onFailure: onFailure,
     );
   }
 
+  Future<dynamic> replaceWithCourseChapterView(
+      {void Function(_i8.NavigationFailure)? onFailure}) async {
+    return replaceWith(
+      const CourseChapterViewRoute(),
+      onFailure: onFailure,
+    );
+  }
+
   Future<dynamic> replaceWithUnknownView(
-      {void Function(_i7.NavigationFailure)? onFailure}) async {
+      {void Function(_i8.NavigationFailure)? onFailure}) async {
     return replaceWith(
       const UnknownViewRoute(),
       onFailure: onFailure,
@@ -257,7 +298,7 @@ extension RouterStateExtension on _i6.RouterService {
   }
 
   Future<dynamic> replaceWithHomeView(
-      {void Function(_i7.NavigationFailure)? onFailure}) async {
+      {void Function(_i8.NavigationFailure)? onFailure}) async {
     return replaceWith(
       const HomeViewRoute(),
       onFailure: onFailure,
@@ -265,7 +306,7 @@ extension RouterStateExtension on _i6.RouterService {
   }
 
   Future<dynamic> replaceWithCourseLandingView(
-      {void Function(_i7.NavigationFailure)? onFailure}) async {
+      {void Function(_i8.NavigationFailure)? onFailure}) async {
     return replaceWith(
       const CourseLandingViewRoute(),
       onFailure: onFailure,
@@ -273,9 +314,9 @@ extension RouterStateExtension on _i6.RouterService {
   }
 
   Future<dynamic> replaceWithCourseDetailsView({
-    _i8.Key? key,
+    _i9.Key? key,
     required String courseId,
-    void Function(_i7.NavigationFailure)? onFailure,
+    void Function(_i8.NavigationFailure)? onFailure,
   }) async {
     return replaceWith(
       CourseDetailsViewRoute(
