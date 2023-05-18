@@ -8,6 +8,7 @@ import 'dart:ui' as _i9;
 
 import 'package:filledstacks_academy/models/models.dart' as _i3;
 import 'package:filledstacks_academy/services/course_service.dart' as _i12;
+import 'package:filledstacks_academy/services/layout_service.dart' as _i13;
 import 'package:flutter/material.dart' as _i6;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:stacked/stacked.dart' as _i2;
@@ -590,3 +591,8 @@ class MockCourseService extends _i1.Mock implements _i12.CourseService {
         )),
       ) as _i5.Future<_i3.Course>);
 }
+
+/// A class which mocks [LayoutService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockLayoutService extends _i1.Mock implements _i13.LayoutService {}

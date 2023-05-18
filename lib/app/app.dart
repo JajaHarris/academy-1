@@ -8,6 +8,7 @@ import 'package:filledstacks_academy/ui/views/unknown/unknown_view.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:filledstacks_academy/ui/views/main_layout/main_layout_view.dart';
+import 'package:filledstacks_academy/services/layout_service.dart';
 // @stacked-import
 
 @StackedApp(
@@ -34,6 +35,7 @@ import 'package:filledstacks_academy/ui/views/main_layout/main_layout_view.dart'
     LazySingleton(classType: RouterService),
     LazySingleton(classType: CourseService),
 
+    LazySingleton(classType: LayoutService),
 // @stacked-service
   ],
   bottomsheets: [
