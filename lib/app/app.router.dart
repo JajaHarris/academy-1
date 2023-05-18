@@ -57,9 +57,16 @@ class StackedRouterWeb extends _i7.RootStackRouter {
       );
     },
     CourseDetailsViewRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<CourseDetailsViewArgs>(
+          orElse: () => CourseDetailsViewArgs(
+              courseId: pathParams.getString('courseId')));
       return _i7.CustomPage<dynamic>(
         routeData: routeData,
-        child: const _i5.CourseDetailsView(),
+        child: _i5.CourseDetailsView(
+          key: args.key,
+          courseId: args.courseId,
+        ),
         opaque: true,
         barrierDismissible: false,
       );
@@ -84,7 +91,7 @@ class StackedRouterWeb extends _i7.RootStackRouter {
             ),
             _i7.RouteConfig(
               CourseDetailsViewRoute.name,
-              path: 'course-details-view',
+              path: 'details/:courseId',
               parent: MainLayoutViewRoute.name,
             ),
           ],
@@ -153,14 +160,37 @@ class CourseLandingViewRoute extends _i7.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i5.CourseDetailsView]
-class CourseDetailsViewRoute extends _i7.PageRouteInfo<void> {
-  const CourseDetailsViewRoute()
-      : super(
+class CourseDetailsViewRoute extends _i7.PageRouteInfo<CourseDetailsViewArgs> {
+  CourseDetailsViewRoute({
+    _i8.Key? key,
+    required String courseId,
+  }) : super(
           CourseDetailsViewRoute.name,
-          path: 'course-details-view',
+          path: 'details/:courseId',
+          args: CourseDetailsViewArgs(
+            key: key,
+            courseId: courseId,
+          ),
+          rawPathParams: {'courseId': courseId},
         );
 
   static const String name = 'CourseDetailsView';
+}
+
+class CourseDetailsViewArgs {
+  const CourseDetailsViewArgs({
+    this.key,
+    required this.courseId,
+  });
+
+  final _i8.Key? key;
+
+  final String courseId;
+
+  @override
+  String toString() {
+    return 'CourseDetailsViewArgs{key: $key, courseId: $courseId}';
+  }
 }
 
 extension RouterStateExtension on _i6.RouterService {
@@ -196,10 +226,16 @@ extension RouterStateExtension on _i6.RouterService {
     );
   }
 
-  Future<dynamic> navigateToCourseDetailsView(
-      {void Function(_i7.NavigationFailure)? onFailure}) async {
+  Future<dynamic> navigateToCourseDetailsView({
+    _i8.Key? key,
+    required String courseId,
+    void Function(_i7.NavigationFailure)? onFailure,
+  }) async {
     return navigateTo(
-      const CourseDetailsViewRoute(),
+      CourseDetailsViewRoute(
+        key: key,
+        courseId: courseId,
+      ),
       onFailure: onFailure,
     );
   }
@@ -236,10 +272,16 @@ extension RouterStateExtension on _i6.RouterService {
     );
   }
 
-  Future<dynamic> replaceWithCourseDetailsView(
-      {void Function(_i7.NavigationFailure)? onFailure}) async {
+  Future<dynamic> replaceWithCourseDetailsView({
+    _i8.Key? key,
+    required String courseId,
+    void Function(_i7.NavigationFailure)? onFailure,
+  }) async {
     return replaceWith(
-      const CourseDetailsViewRoute(),
+      CourseDetailsViewRoute(
+        key: key,
+        courseId: courseId,
+      ),
       onFailure: onFailure,
     );
   }

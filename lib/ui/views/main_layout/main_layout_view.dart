@@ -21,7 +21,7 @@ class MainLayoutView extends StackedView<MainLayoutViewModel> {
         style: GoogleFonts.openSans(color: Colors.white),
         child: SizedBox(
           height: screenHeight(context),
-          width: kdDesktopMaxContentWidth,
+          width: viewModel.contentWidth,
           child: ListView(
             children: [
               const NavBar(),

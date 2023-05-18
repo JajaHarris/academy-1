@@ -20,7 +20,7 @@ import 'package:filledstacks_academy/services/layout_service.dart';
       children: [
         CustomRoute(page: HomeView, path: ''),
         CustomRoute(page: CourseLandingView),
-        CustomRoute(page: CourseDetailsView),
+        CustomRoute(page: CourseDetailsView, path: 'details/:courseId'),
       ],
     ),
 // @stacked-route
