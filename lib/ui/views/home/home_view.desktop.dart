@@ -20,40 +20,33 @@ class HomeViewDesktop extends ViewModelWidget<HomeViewModel> {
     return Scaffold(
         backgroundColor: kcBackgroundColor,
         // Outside Row
-        body: Center(
-          child: SizedBox(
-            width: kdDesktopMaxContentWidth,
-            height: kdDesktopMaxContentHeight,
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                // Left side of screen
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const AcademyIcon(),
-                    const Spacer(flex: 2),
-                    const HomeTitle(),
-                    const HomeSubtitle(),
-                    verticalSpaceMedium,
+        body: Row(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            // Left side of screen
+            SizedBox(
+              width: kdDesktopMaxContentWidth * 0.5,
+              child: ListView(
+                children: [
+                  const HomeTitle(),
+                  const HomeSubtitle(),
+                  verticalSpaceMedium,
 
-                    // Arrow
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 100),
-                      child: SvgPicture.asset('assets/sign-up-arrow.svg'),
-                    ),
-                    verticalSpaceSmall,
-                    const GoogleSignIn(),
-                    const Spacer(flex: 3)
-                  ],
-                ),
-                horizontalSpaceMedium,
-                HomeImage(
-                  onTap: viewModel.navigateToCourse,
-                ),
-              ],
+                  // Arrow
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 100),
+                    child: SvgPicture.asset('assets/sign-up-arrow.svg'),
+                  ),
+                  verticalSpaceSmall,
+                  const GoogleSignIn(),
+                ],
+              ),
             ),
-          ),
+            horizontalSpaceMedium,
+            HomeImage(
+              onTap: viewModel.navigateToCourse,
+            ),
+          ],
         ));
   }
 }
