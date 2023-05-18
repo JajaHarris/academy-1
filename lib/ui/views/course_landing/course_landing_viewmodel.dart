@@ -6,6 +6,7 @@ import 'package:filledstacks_academy/app/app.router.dart';
 import 'package:filledstacks_academy/exceptions/resource_not_found.dart';
 import 'package:filledstacks_academy/models/models.dart';
 import 'package:filledstacks_academy/services/course_service.dart';
+import 'package:filledstacks_academy/ui/views/course_details/course_details_view.dart';
 import 'package:flutter/foundation.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -33,7 +34,7 @@ class CourseLandingViewModel extends FutureViewModel {
       await _routerService.replaceWith(const UnknownViewRoute());
     } catch (e) {
       log.e(
-        'Unexpected error has occured while fetching the course using id $courseId',
+        'Unexpected error has occurred while fetching the course using id $courseId',
         e,
         StackTrace.current,
       );

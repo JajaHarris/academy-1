@@ -2,9 +2,11 @@ import 'dart:async';
 
 import 'package:filledstacks_academy/app/app.locator.dart';
 import 'package:filledstacks_academy/app/app.logger.dart';
+import 'package:filledstacks_academy/app/app.router.dart';
 import 'package:filledstacks_academy/models/models.dart';
 import 'package:filledstacks_academy/services/course_service.dart';
 import 'package:filledstacks_academy/services/layout_service.dart';
+import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -44,11 +46,17 @@ class CourseDetailsViewModel extends FutureViewModel<Course?> {
   }
 
   Future<void> showChapter(Chapter chapter) async {
-    selectedChapter = chapter;
-    notifyListeners();
+    _routerService.replaceWithCourseChapterView(
+      key: UniqueKey(),
+      chapterId: chapter.id,
+      chapter: chapter,
+    );
+
+    rebuildUi();
   }
 
   bool isSidebarItemSelected(SideBarItem sideBarItem) {
-    return sideBarItem.isSelected(selectedChapter?.id ?? '');
+    final id = _routerService.topRoute.pathParams.optString('chapterId');
+    return id == null ? false : sideBarItem.isSelected(id);
   }
 }

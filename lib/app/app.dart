@@ -21,10 +21,17 @@ import 'package:filledstacks_academy/ui/views/course_chapter/course_chapter_view
       children: [
         CustomRoute(page: HomeView, path: ''),
         CustomRoute(page: CourseLandingView),
-        CustomRoute(page: CourseDetailsView, path: 'details/:courseId'),
+        CustomRoute(
+          page: CourseDetailsView,
+          path: 'course/:courseId',
+          children: [
+            RedirectRoute(path: '', redirectTo: 'readme'),
+            CustomRoute(page: CourseChapterView, path: ':chapterId'),
+          ],
+        ),
       ],
     ),
-    CustomRoute(page: CourseChapterView),
+
 // @stacked-route
     CustomRoute(page: UnknownView, path: '/404'),
 
