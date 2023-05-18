@@ -25,7 +25,6 @@ import 'package:filledstacks_academy/ui/views/course_chapter/course_chapter_view
           page: CourseDetailsView,
           path: 'course/:courseId',
           children: [
-            RedirectRoute(path: '', redirectTo: 'readme'),
             CustomRoute(page: CourseChapterView, path: ':chapterId'),
           ],
         ),

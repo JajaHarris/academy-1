@@ -28,7 +28,22 @@ class CourseDetailsViewModel extends FutureViewModel<Course?> {
   void exitFullScreen() => _layoutService.exitFullScreen();
 
   @override
-  Future<Course> futureToRun() => _courseService.getCourseForId('flutter-web');
+  Future<Course> futureToRun() async {
+    final fetchedCourse = await _courseService.getCourseForId(courseId);
+
+    final chapterId = _routerService.topRoute.pathParams.optString('chapterId');
+
+    final chapterIdToShow =
+        chapterId ?? fetchedCourse.modules.first.chapters.first.id;
+
+    _routerService.navigateToCourseChapterView(
+      key: UniqueKey(), //ensures route is not seen as a duplicate route
+      chapterId: chapterIdToShow,
+      chapter: fetchedCourse.chapterForId(chapterIdToShow),
+    );
+
+    return fetchedCourse;
+  }
 
   List<dynamic> get sidebarItems {
     if (isBusy) {
@@ -47,7 +62,7 @@ class CourseDetailsViewModel extends FutureViewModel<Course?> {
 
   Future<void> showChapter(Chapter chapter) async {
     _routerService.replaceWithCourseChapterView(
-      key: UniqueKey(),
+      key: UniqueKey(), //ensures route is not seen as a duplicate route
       chapterId: chapter.id,
       chapter: chapter,
     );
